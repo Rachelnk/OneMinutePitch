@@ -1,9 +1,16 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap
+from app.models import User
 from config import config_options
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate, MigrateCommand
+
 bootstrap = Bootstrap()
 db = SQLAlchemy()
+migrate = Migrate(app,db)
+
+manager = Manager(app)
+manager.add_command('db',MigrateCommand)
 
 # Initializing application
 
