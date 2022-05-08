@@ -3,5 +3,5 @@ from . import main
 
 @main.route('/')
 def index():
-  title = 'Home - '
-  return render_template('index.html')
+  title = 'Home - Welcome to One Minute Pitch. '
+  return render_template('index.html', title = title)
