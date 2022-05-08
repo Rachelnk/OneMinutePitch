@@ -1,4 +1,5 @@
 from flask import Flask
+from app import create_app, db
 from flask_bootstrap import Bootstrap
 from app.models import User
 from config import config_options
