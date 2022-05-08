@@ -16,4 +16,25 @@ class User(db.Model):
     def __repr__(self):
         return f'User {self.username}'
 
+class Pitch(db.Model):
+    '''
+    This class will contain the database schema for picthes table
+    '''
+    __tablename__ = 'pitches'
+
+    id = db.Column(db.Integer,primary_key = True)
+    pitch = db.Column(db.String)
+    category = db.Column(db.String)
+    users_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+    comments = db.relationship('Comment',backref='pitch',lazy='dynamic')
+
+    def save_pitch(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_pitch(cls,category):
+        pitches = Pitch.query.filter_by(category=category).all()
+        return pitches
+
     
