@@ -58,10 +58,10 @@ class Pitch(db.Model):
         db.session.add(self)
         db.session.commit()
 
-    @classmethod
-    def get_pitch(cls,category):
-        pitches = Pitch.query.filter_by(category=category).all()
-        return pitches
+    # @classmethod
+    # def get_pitch(cls,category):
+    #     pitches = Pitch.query.filter_by(category=category).all()
+    #     return pitches
     def __repr__(self):
         return f'Pitch {self.post}'
 
