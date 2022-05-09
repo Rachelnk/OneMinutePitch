@@ -5,7 +5,8 @@ from wtforms.validators import InputRequired
 from ..models import Pitch,Comment
 
 class PitchForm(FlaskForm):
-    pitch = TextAreaField('Pitch',validators=[InputRequired()])
+    title = StringField ('Title', validators= [InputRequired()])
+    post = TextAreaField('Pitch',validators=[InputRequired()])
     category = SelectField('Category',choices=[('Interview','Interview'),('Pick-up','Pick-up'),('Product','Product'),('Promotion','Promotion')])
     submit = SubmitField('Add Pitch')
 
@@ -14,5 +15,5 @@ class CommentsForm(FlaskForm):
     submit = SubmitField('Add Comment')
 
 class UpdateProfile(FlaskForm):
-    bio = StringField('About You',validators=[InputRequired()])
+    bio = TextAreaField('About You',validators=[InputRequired()])
     submit = SubmitField('Add Bio')
