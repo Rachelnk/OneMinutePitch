@@ -45,10 +45,14 @@ class Pitch(db.Model):
     __tablename__ = 'pitches'
 
     id = db.Column(db.Integer,primary_key = True)
+    title = db.Column(db.String(255),nullable = False)
     pitch = db.Column(db.String)
     category = db.Column(db.String)
-    users_id = db.Column(db.Integer,db.ForeignKey('users.id'))
-    comments = db.relationship('Comment',backref='pitch',lazy='dynamic')
+    user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+    comment = db.relationship('Comment',backref='pitch',lazy='dynamic')
+    upvote = db.relationship('Upvote',backref='pitch',lazy='dynamic')
+    downvote = db.relationship('Downvote',backref='pitch',lazy='dynamic')
+    time = db.Column(db.DateTime, default = datetime.utcnow)
 
     def save_pitch(self):
         db.session.add(self)
@@ -58,6 +62,8 @@ class Pitch(db.Model):
     def get_pitch(cls,category):
         pitches = Pitch.query.filter_by(category=category).all()
         return pitches
+    def __repr__(self):
+        return f'Pitch {self.post}'
 
 class Comment(db.Model):
     '''
@@ -69,10 +75,38 @@ class Comment(db.Model):
     pitch_id = db.Column(db.Integer,db.ForeignKey('pitches.id'))
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
 
+    def save_comments(self):
+        db.session.add(self)
+        db.session.commit()
+
     @classmethod
     def get_comments(cls,pitch_id):
         comments = Comment.query.filter_by(pitch_id=pitch_id).all()
         return comments
+
+    def __repr__(self):
+        return f'comment:{self.comment}'
+
+class Upvote(db.Model):
+    __tablename__ = 'upvotes'
+
+    id = db.Column(db.Integer,primary_key=True)
+    user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+    pitch_id = db.Column(db.Integer,db.ForeignKey('pitches.id'))
+    
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_upvotes(cls,id):
+        upvote = Upvote.query.filter_by(pitch_id=id).all()
+        return upvote
+
+
+    def __repr__(self):
+        return f'{self.user_id}:{self.pitch_id}'
 
 @login_manager.user_loader
 def load_user(user_id):

@@ -9,10 +9,10 @@ from .. import db
 
 @main.route('/')
 def index():
-  pitches = Pitch.query.all()
-  business= Pitch.query.filter_by(category = 'Business').all()
-  job = Pitch.query.filter_by(category = 'Job').all()
-  advertisement = Pitch.query.filter_by(category = 'Advertisment').all()
+  pitches = Pitch.get_pitch()
+  business= Pitch.get_pitch('Business')
+  job = Pitch.get_pitch('Job')
+  advertisement = Pitch.get_pitch('Advertisement')
   title = 'Home - Welcome to One Minute Pitch. '
   return render_template('index.html', title = title, pitches=pitches, job=job,business=business, advertisement=advertisement)
 
