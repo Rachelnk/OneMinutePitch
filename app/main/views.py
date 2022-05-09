@@ -40,7 +40,7 @@ def comment(pitch_id):
         pitch_id = pitch_id
         user_id = current_user._get_current_object().id
         new_comment = Comment(comment = comment,user_id = user_id,pitch_id = pitch_id)
-        new_comment.save_c()
+        new_comment.save_comments()
         return redirect(url_for('.comment', pitch_id = pitch_id))
     return render_template('comment.html', form =form, pitch = pitch,all_comments=all_comments)
 
@@ -63,7 +63,7 @@ def updateprofile(name):
         abort(404)
     if form.validate_on_submit():
         user.bio = form.bio.data
-        user.save_u()
+        user.save_user()
         return redirect(url_for('.profile',name = name))
     return render_template('profile/update.html',form =form)@main.route('/user/<name>/update/pic',methods= ['POST'])
 
@@ -90,7 +90,7 @@ def like(id):
         else:
             continue
     new_vote = Upvote(user = current_user, pitch_id=id)
-    new_vote.save()
+    new_vote.get_upvotes()
     return redirect(url_for('main.index',id=id))
 
 @main.route('/dislike/<int:id>',methods = ['POST','GET'])
@@ -106,5 +106,5 @@ def dislike(id):
         else:
             continue
     new_downvote = Downvote(user = current_user, pitch_id=id)
-    new_downvote.save()
+    new_downvote.save_downvote()
     return redirect(url_for('main.index',id = id))
