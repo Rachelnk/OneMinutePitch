@@ -2,7 +2,7 @@ from unicodedata import category
 from flask import render_template, request,redirect,url_for, abort
 from . import main
 from flask_login import login_required,current_user,login_user,logout_user
-from .forms import PitchForm, CommentsForm, UpdateProfile
+from .forms import PitchForm,CommentsForm, UpdateProfile
 from ..models import User, Comment, Pitch, Upvote, Downvote
 from .. import db, photos
 
