@@ -7,13 +7,13 @@ from ..models import Pitch,Comment
 class PitchForm(FlaskForm):
     title = StringField ('Title', validators= [InputRequired()])
     post = TextAreaField('Pitch',validators=[InputRequired()])
-    category = SelectField('Category',choices=[('Interview','Interview'),('Pick-up','Pick-up'),('Product','Product'),('Promotion','Promotion')])
+    category = SelectField('Category',choices=[('Job','Job'),('Business','Business'),('Advertisement','Advertisement')])
     submit = SubmitField('Add Pitch')
 
 class CommentsForm(FlaskForm):
-    comment = TextAreaField('comment on the post',validators=[InputRequired()])
+    comment = TextAreaField('Comment on the post',validators=[InputRequired()])
     submit = SubmitField('Add Comment')
 
 class UpdateProfile(FlaskForm):
-    bio = TextAreaField('About You',validators=[InputRequired()])
+    bio = TextAreaField('Write a bit about yourself',validators=[InputRequired()])
     submit = SubmitField('Add Bio')
