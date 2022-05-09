@@ -1,0 +1,3 @@
+Hello {{user.username}}
+Welcome to OneMinutePitch
+We have just seen you have signed up for our application and want to welcome you to the family. You can add your pitch be it a business idea, or job pitch. You can comment on other peoples' pitches, as well as like or dislike them.
