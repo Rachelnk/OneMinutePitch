@@ -1,6 +1,7 @@
 from . import db, login_manager
 from werkzeug.security import generate_password_hash,check_password_hash
-from flask_login import UserMixin
+from flask_login import UserMixin, current_user
+from datetime import datetime
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer,primary_key = True)
@@ -8,11 +9,14 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255),unique = True,index = True)
     # role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
     bio = db.Column(db.String(255))
-    pitches = db.relationship('Pitch',backref='user',lazy = 'dynamic')
-    comments = db.relationship('Comment',backref='user',lazy='dynamic')
-
     profile_pic_path = db.Column(db.String())
     pass_secure = db.Column(db.String(255))
+    pitches = db.relationship('Pitch',backref='user',lazy = 'dynamic')
+    comment = db.relationship('Comment',backref='user',lazy='dynamic')
+    upvote = db.relationship('Upvote',backref='user',lazy='dynamic')
+    downvote = db.relationship('Downvote',backref='user',lazy='dynamic')
+
+    
 
     def __repr__(self):
         return f'User {self.username}'
