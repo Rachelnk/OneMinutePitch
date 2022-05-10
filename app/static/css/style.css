@@ -51,9 +51,16 @@
   color: white;
 }
 #allcomments{
-  /* background-color: rgba(0, 0, 0, 0.589); */
   padding-top: 2%;
   border-radius: 10px;
   height: 100%;
   
+}
+.commentform{
+  color: white;
+  margin-top: 1%;
+}
+#user{
+  margin-top: 4%;
+  color: white;
 }
