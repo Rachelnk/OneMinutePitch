@@ -3,11 +3,11 @@ class Config:
     '''
     General configuration parent class
     '''
+    SECRET_KEY=os.environ.get('SECRET_KEY')
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://kiarie:rayray@localhost/pitch'
     UPLOADED_PHOTOS_DEST ='app/static/photos'
-    SECRET_KEY=os.environ.get('SECRET_KEY')
-    # email configurations
 
+    # email configurations
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 587
     MAIL_USE_TLS = True
