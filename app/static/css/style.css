@@ -10,6 +10,9 @@
   color: white;
   font-size: 18px;
 }
+a:link {
+  color: black;
+}
 #carded{
   border-radius:6px; 
   background-color: rgb(241, 241, 241);
