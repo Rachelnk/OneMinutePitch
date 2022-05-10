@@ -47,3 +47,13 @@
   color:rgb(0, 0, 0);
   text-decoration: underline;
 }
+#coms{
+  color: white;
+}
+#allcomments{
+  /* background-color: rgba(0, 0, 0, 0.589); */
+  padding-top: 2%;
+  border-radius: 10px;
+  height: 100%;
+  
+}
