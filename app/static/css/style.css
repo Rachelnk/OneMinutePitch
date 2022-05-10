@@ -75,3 +75,9 @@
   margin-top: 5%;
   color: white;
 }
+#particles-js {
+   background-size: cover;
+}
+#imgform{
+  display: none;
+}
