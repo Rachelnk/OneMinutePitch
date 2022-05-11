@@ -3,7 +3,8 @@ class Config:
     '''
     General configuration parent class
     '''
-    SECRET_KEY=os.environ.get('SECRET_KEY')
+    SECRET_KEY = os.urandom(32)
+    SECRET_KEY = os.environ.get('SECRET_KEY')
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://kiarie:rayray@localhost/pitch'
     UPLOADED_PHOTOS_DEST ='app/static/photos'
 
@@ -23,7 +24,10 @@ class ProdConfig(Config):
     Args:
         Config: The parent configuration class with General configuration settings
     '''
-    pass
+    # SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://kiarie:rayray@localhost/pitch'
+    
+   
 
 class TestConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://kiarie:rayray@localhost/pitch_test'

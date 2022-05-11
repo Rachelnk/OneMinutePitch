@@ -4,8 +4,7 @@ from . import main
 from flask_login import login_required,current_user,login_user,logout_user
 from .forms import PitchForm,CommentsForm, UpdateProfile
 from ..models import User, Comment, Pitch, Upvote, Downvote
-from .. import db
-# photos
+from .. import db,photos
 
 
 @main.route('/')
@@ -29,11 +28,12 @@ def new_pitch():
         new_pitch_object = Pitch(post=post,user_id=current_user._get_current_object().id,category=category,title=title)
         new_pitch_object.save_pitch()
         return redirect(url_for('main.index'))
+    return render_template('add_pitch.html', form = form)
 
 @main.route('/comment/<int:pitch_id>', methods = ['POST','GET'])
 @login_required
 def comment(pitch_id):
-    form = Comment()
+    form = CommentsForm()
     pitch = Pitch.query.get(pitch_id)
     all_comments = Comment.query.filter_by(pitch_id = pitch_id).all()
     if form.validate_on_submit():
@@ -68,15 +68,15 @@ def updateprofile(name):
         return redirect(url_for('.profile',name = name))
     return render_template('profile/update.html',form =form)@main.route('/user/<name>/update/pic',methods= ['POST'])
 
-# @login_required
-# def update_pic(name):
-#     user = User.query.filter_by(username = name).first()
-#     if 'photo' in request.files:
-#         filename = photos.save(request.files['photo'])
-#         path = f'photos/{filename}'
-#         user.profile_pic_path = path
-#         db.session.commit()
-#     return redirect(url_for('main.profile',name=name))
+@login_required
+def update_pic(name):
+    user = User.query.filter_by(username = name).first()
+    if 'photo' in request.files:
+        filename = photos.save(request.files['photo'])
+        path = f'photos/{filename}'
+        user.profile_pic_path = path
+        db.session.commit()
+    return redirect(url_for('main.profile',name=name))
 
 @main.route('/like/<int:id>',methods = ['POST','GET'])
 @login_required

@@ -3,15 +3,15 @@ from app.models import User
 from flask_script import Manager,Server
 from flask_migrate import Migrate, MigrateCommand
 # Creating app instance
-app = create_app('development')
+# app = create_app('development')
 app = create_app('production')
-app = create_app('test')
+# app = create_app('test')
 migrate = Migrate(app,db)
-
 manager = Manager(app)
-manager.add_command('server',Server)
+
 manager.add_command('server',Server)
 manager.add_command('db',MigrateCommand)
+
 @manager.command
 def test():
     """Run the unit tests."""

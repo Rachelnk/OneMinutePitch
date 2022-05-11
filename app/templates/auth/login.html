@@ -15,6 +15,7 @@
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       {{ message }}
       </div>
+    
     {% endfor %}
     {{wtf.quick_form(loginform)}}
     <p> Don't have an account? <a id="sign" href="{{url_for('auth.signup')}}">Signup here</a></p>
