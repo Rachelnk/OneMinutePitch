@@ -91,7 +91,7 @@ def like(id):
         else:
             continue
     new_vote = Upvote(user = current_user, pitch_id=id)
-    new_vote.get_upvotes()
+    new_vote.save_upvote()
     return redirect(url_for('main.index',id=id))
 
 @main.route('/dislike/<int:id>',methods = ['POST','GET'])
