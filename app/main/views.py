@@ -66,8 +66,9 @@ def updateprofile(name):
         user.bio = form.bio.data
         user.save_user()
         return redirect(url_for('.profile',name = name))
-    return render_template('profile/update.html',form =form)@main.route('/user/<name>/update/pic',methods= ['POST'])
+    return render_template('profile/update.html',form =form)
 
+@main.route('/user/<name>/update/pic',methods= ['POST'])
 @login_required
 def update_pic(name):
     user = User.query.filter_by(username = name).first()
