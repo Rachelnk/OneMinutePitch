@@ -1,5 +1,5 @@
-from turtle import title
-from unicodedata import category
+# from turtle import title
+# from unicodedata import category
 import unittest
 from app.models import User, Pitch, Comment
 from app import db, email
@@ -24,14 +24,6 @@ class UserTest(unittest.TestCase):
     
     def test_password_verification(self):
             self.assertTrue(self.new_user.verify_password('123rnk'))
-    
-    def testcomment(self):
-        '''
-        test comment
-        '''
-        self.assertEquals(self.new_comment.comment,'Interesting')
-        self.assertEquals(self.new_comment.pitch,self.pitch_one)
-        self.assertEquals(self.new_comment.user,self.user_ray)
 
 class PitchTest(unittest.TestCase):
 
@@ -59,3 +51,5 @@ class CommentTest(unittest.TestCase):
         User.query.delete()
         Comment.query.delete()
         Pitch.query.delete()
+if __name__ == '__main__':
+    unittest.main()

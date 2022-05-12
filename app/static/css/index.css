@@ -6,7 +6,7 @@ body {
   z-index: 1;
   background: linear-gradient(to bottom right, #230e4a, black);
 }
-#particles-js {
+#pitches-section {
   height: auto;
   background-size: cover;
   background-repeat: no-repeat;
