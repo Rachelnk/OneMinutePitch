@@ -5,7 +5,7 @@ class Config:
     '''
     SECRET_KEY = os.urandom(32)
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
     UPLOADED_PHOTOS_DEST ='app/static/photos'
 
     # email configurations
@@ -24,7 +24,8 @@ class ProdConfig(Config):
     Args:
         Config: The parent configuration class with General configuration settings
     '''
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
+    # SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
     # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://kiarie:rayray@localhost/pitch'
     
    
@@ -40,7 +41,7 @@ class DevConfig(Config):
     Args:
         Config: The parent configuration class with General configuration settings
     '''
-    # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://kiarie:rayray@localhost/pitch'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://kiarie:rayray@localhost/pitch'
     DEBUG = True
 config_options = {
     'development':DevConfig,
