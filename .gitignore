@@ -1,5 +1,5 @@
-
+myenv/
 virtual/
 *.pyc
 instance/
-myenv/
+
